@@ -15,10 +15,10 @@ import java.util.stream.IntStream;
 public class InsertSort {
 
     public static void main(String[] args) {
-        //int[] a = {3,1,4,2,8};
-        int[] a = {1};
+        int[] a = {3,1,4,2,-1,44,8};
+        //int[] a = {1};
         InsertSort insertSort = new InsertSort();
-        insertSort.insertSort(a);
+        insertSort.insertSort2(a);
         System.out.println(Arrays.toString(a));
     }
 
@@ -40,6 +40,22 @@ public class InsertSort {
 
         List<Integer> ls= IntStream.of(arr).boxed().collect(Collectors.toList());
         System.out.println(ls);
+
+    }
+
+    /**
+     * 数据结构与算法P187
+     */
+    public void insertSort2(int[] arr){
+
+        for(int j=1; j < arr.length; j++){
+            int index;
+            int tmp = arr[j];
+            for( index = j; index > 0 && tmp < arr[index-1]; index--){
+                arr[index] = arr[index-1];// tmp和他前面排好序的相比较，只要比他们小，就要后移，知道大于就找到自己的位置了
+            }
+            arr[index] = tmp;
+        }
 
     }
 }
