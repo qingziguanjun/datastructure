@@ -11,5 +11,7 @@ public class TestPatern {
         String a = "1222222435d555";
         boolean matches = a.matches(pa);
         System.out.println(matches);
+
+
     }
 }
