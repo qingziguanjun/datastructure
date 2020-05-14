@@ -8,7 +8,7 @@ package com.sy.study;
 public class TestPatern {
     public static void main(String[] args) {
         String pa= "^[0-9]*$";
-        String a = "1222222435d555";
+        String a = "dddddddddd";
         boolean matches = a.matches(pa);
         System.out.println(matches);
 
