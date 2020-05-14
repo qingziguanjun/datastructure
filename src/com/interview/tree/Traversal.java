@@ -131,6 +131,8 @@ public class Traversal {
         Stack<TreeNode> stack = new Stack<>();
         TreeNode cur = root;
         while (cur != null || !stack.isEmpty()){
+            //对于当前树，root最先进去，接着之要有left就进去
+            //最后出一个left，如果 它的right不为空就进去，对于非叶子节点是弹出当前在处理右，叶子节点的right肯定是null
             while (cur != null){
                 stack.push(cur);
                 cur = cur.left;
