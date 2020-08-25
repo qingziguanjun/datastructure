@@ -1,4 +1,4 @@
-package com.interview.linkedlist;
+package com.leetcode.linklist;
 
 /**
  * @author songyi
@@ -16,9 +16,10 @@ public class LinkedListUtil {
         }
         System.out.println("--------------------打印开始---------------------");
         while (head != null){
-            System.out.println(head.val);
+            System.out.print(head.val  + "--");
             head = head.next;
         }
+        System.out.println();
         System.out.println("-----------------打印结束-------------------------");
     }
 }

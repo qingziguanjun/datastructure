@@ -1,8 +1,6 @@
 package com.leetcode.tree;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author songyi
@@ -38,4 +36,109 @@ public class S102LevelTraversal {
         List<List<Integer>> lists = s.levelOrder(tree);
         System.out.println(lists);
     }
+
+
+    /**
+     * Á´½Ó£ºhttps://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/bfs-de-shi-yong-chang-jing-zong-jie-ceng-xu-bian-l/
+     * @param root
+     */
+    void bfs(TreeNode root) {
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll(); // Java µÄ pop Ð´×÷ poll()
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+        }
+    }
+
+    public List<List<Integer>>  levelOrderBFS(TreeNode root){
+        List<List<Integer>> result = new ArrayList<>();
+        if(root == null){
+            return result;
+        }
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        while (!queue.isEmpty()){
+            int size = queue.size();
+            List<Integer> temp = new ArrayList<>();
+            for(int i = 0; i < size; i++) {
+                TreeNode poll = queue.poll();
+                temp.add(poll.val);
+                if(poll.left != null){
+                    queue.add(poll.left);
+                }
+                if(poll.right != null){
+                    queue.add(poll.right);
+                }
+            }
+            result.add(temp);
+        }
+        return result;
+    }
+
+    List<List<Integer>> res = new ArrayList<>();
+    public List<List<Integer>> levelOrderSelf(TreeNode root) {
+        if(root == null) return res;
+        helper(root, 0);
+        return res;
+    }
+
+    public void helper1(TreeNode treeNode, int n){
+        if(res.size() == n){
+            res.add(new ArrayList<>());
+        }
+        List<Integer> integers = res.get(n);
+        integers.add(treeNode.val);
+        if(treeNode.left != null){
+            helper1(treeNode.left, n+1);
+        }
+
+        if(treeNode.right != null){
+            helper1(treeNode.right, n+1);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

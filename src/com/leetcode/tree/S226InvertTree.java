@@ -40,4 +40,15 @@ public class S226InvertTree {
         BSTreeUtil.printTree(node);
 
     }
+
+
+    public TreeNode invertTree1(TreeNode root) {
+        if(root == null) {
+            return null;
+        }
+        TreeNode temp = root.right;
+        root.right = invertTree(root.left);
+        root.left = invertTree(temp);
+        return root;
+    }
 }

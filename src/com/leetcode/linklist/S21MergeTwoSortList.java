@@ -1,4 +1,4 @@
-package com.interview.linkedlist;
+package com.leetcode.linklist;
 
 /**
  * @author songyi
@@ -6,7 +6,7 @@ package com.interview.linkedlist;
  * @Description:
  * https://leetcode-cn.com/problems/merge-two-sorted-lists/
  */
-public class MergeTwoLists {
+public class S21MergeTwoSortList {
     //todo 没有完成
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode head = null;

@@ -1,4 +1,4 @@
-package com.interview.linkedlist;
+package com.leetcode.linklist;
 
 /**
  * @author songyi

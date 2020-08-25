@@ -37,7 +37,7 @@ public class S107LevelTraversal {
                     queue.add(node.right);
             }
             // 每次都往队头塞
-            result.add(oneLevel);
+            result.addFirst(oneLevel);
         }
         return result;
     }

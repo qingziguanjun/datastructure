@@ -1,6 +1,4 @@
-package com.interview.linkedlist;
-
-import java.util.List;
+package com.leetcode.linklist;
 
 /**
  * @author songyi

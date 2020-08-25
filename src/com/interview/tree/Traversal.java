@@ -1,5 +1,7 @@
 package com.interview.tree;
 
+import com.algs4.algs4.In;
+
 import java.util.*;
 
 /**
@@ -29,17 +31,19 @@ public class Traversal {
         Traversal traversal = new Traversal();
         List<Integer> integers = traversal.postorderTraversal(node1);
         System.out.println(integers);
-        List<Integer> integers1 = traversal.inorderTraversalIteration(node1);
+        List<Integer> integers1 = traversal.postorderTraversalIteration(node1);
         System.out.println(integers1);
 
     }
 
     /**
      * 下面三个是递归解决，很简单，迭代有点难啊
-     *
+     * 递归四步骤
+     * （1）结束条件
+     * （2）本层
+     * （3）进入下层
+     * （4）清理
      */
-
-
      /**
      * @param root
      * @return
@@ -149,20 +153,21 @@ public class Traversal {
     }
 
     /**
-     * todo 这个不对
+     *
      * @param root
      * @return
      */
     public List<Integer> postorderTraversalIteration(TreeNode root) {
-        LinkedList<Integer> result = new LinkedList<>();
-        if(root == null){
-            return result;
-        }
         LinkedList<TreeNode> stack = new LinkedList<>();
+        LinkedList<Integer> output = new LinkedList<>();
+        if (root == null) {
+            return output;
+        }
+
         stack.add(root);
         while (!stack.isEmpty()) {
-            TreeNode node = stack.pop();
-            result.addFirst(node.val);
+            TreeNode node = stack.pollLast();
+            output.addFirst(node.val);
             if (node.left != null) {
                 stack.add(node.left);
             }
@@ -170,7 +175,81 @@ public class Traversal {
                 stack.add(node.right);
             }
         }
+        return output;
+    }
 
+
+    //20200808自己写
+    public List<Integer> inorderTraversalSelf(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if(root != null){
+            result.add(root.val);
+        }
+        if(root.left != null){
+            result.addAll(inorderTraversalSelf(root.left));
+        }
+        if(root.right != null){
+            result.addAll(inorderTraversalSelf(root.right));
+        }
         return result;
     }
+
+    public List<Integer> inorderTraversalS(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if(root == null) return result;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        while (!stack.isEmpty()) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            result.add(cur.val);
+            if(cur.right != null){
+                cur = cur.right;
+            }
+        }
+        return  result;
+    }
+    //
+    public List<Integer> preorderTraversalSelf(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if(root == null) return result;
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode treeNode = stack.pop();
+            result.add(treeNode.val);
+            if(treeNode.right != null){
+                stack.push(treeNode.right);
+            }
+            if(treeNode.left != null){
+                stack.push(treeNode.left);
+            }
+        }
+        return result;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

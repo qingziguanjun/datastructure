@@ -1,6 +1,4 @@
-package com.interview.linkedlist;
-
-import org.omg.PortableServer.LIFESPAN_POLICY_ID;
+package com.leetcode.linklist;
 
 /**
  * 单链表反转
@@ -26,7 +24,7 @@ public class ReverseSingleLinkedList {
         node4.next = node5;
         LinkedListUtil.printLinkedList(node1);
         //ListNode head = r.reverseByRecursive(node1);
-        ListNode head = r.reverseByIteration(node1);
+        ListNode head = r.reverseDigui(node1);
         LinkedListUtil.printLinkedList(head);
 
     }
@@ -87,4 +85,74 @@ public class ReverseSingleLinkedList {
         head.next = pre;
         return head;
     }
+
+    //**********************2020-08-03自己写***********************
+
+    /**
+     * 迭代
+     * @param head
+     * @return
+     */
+    public ListNode reverse(ListNode head){
+        if(head == null || head.next == null){
+            return head;
+        }
+        ListNode pre = null, next = null;
+        while (head.next != null){
+            next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+
+        return head;
+
+    }
+
+    public ListNode reverseDigui(ListNode head){
+        if(head == null || head.next == null){
+            return head;
+        }
+        ListNode result = null;
+        if(head.next != null){
+            result = reverseDigui(head.next);
+        }
+        head.next.next = head;
+        head.next = null;
+        return result;
+    }
+
+    //**********************2020-08-03自己写结束***********************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

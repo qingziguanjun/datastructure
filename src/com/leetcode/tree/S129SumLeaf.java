@@ -48,6 +48,8 @@ public class S129SumLeaf {
         childSum(k, root.right);
     }
 
+
+    //BFS±éÀú
     private List<List<Integer>> result= new ArrayList<>();
     public int sumNumbers(TreeNode root) {
         if(root == null) return 0;
@@ -71,7 +73,6 @@ public class S129SumLeaf {
         onePath.add(root.val);
         //Ò¶×Ó
         if(root.left == null && root.right == null){
-
             result.add(onePath);
         }
         if(root.left != null){
