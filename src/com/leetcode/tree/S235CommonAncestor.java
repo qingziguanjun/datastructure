@@ -49,4 +49,82 @@ public class S235CommonAncestor {
         System.out.println(ancestor2.val);
 
     }
+
+
+    /**
+     *
+     作者：LeetCode
+     链接：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/solution/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian--2/
+     来源：力扣（LeetCode）
+     著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
+    public TreeNode lowestCommonAncestorIter(TreeNode root, TreeNode p, TreeNode q) {
+
+        // Value of p
+        int pVal = p.val;
+
+        // Value of q;
+        int qVal = q.val;
+
+        // Start from the root node of the tree
+        TreeNode node = root;
+
+        // Traverse the tree
+        while (node != null) {
+
+            // Value of ancestor/parent node.
+            int parentVal = node.val;
+
+            if (pVal > parentVal && qVal > parentVal) {
+                // If both p and q are greater than parent
+                //取更大的子节点
+                node = node.right;
+            } else if (pVal < parentVal && qVal < parentVal) {
+                // If both p and q are lesser than parent
+                //取更小的子节点
+                node = node.left;
+            } else {
+                // We have found the split point, i.e. the LCA node.
+                return node;
+            }
+        }
+        return null;
+    }
+
+
+
+    /**
+     *
+     链接：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/solution/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian--2/
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
+    public TreeNode lowestCommonAncestorDigui(TreeNode root, TreeNode p, TreeNode q) {
+
+        // Value of current node or parent node.
+        int parentVal = root.val;
+
+        // Value of p
+        int pVal = p.val;
+
+        // Value of q;
+        int qVal = q.val;
+
+        if (pVal > parentVal && qVal > parentVal) {
+            // If both p and q are greater than parent
+            return lowestCommonAncestor(root.right, p, q);
+        } else if (pVal < parentVal && qVal < parentVal) {
+            // If both p and q are lesser than parent
+            return lowestCommonAncestor(root.left, p, q);
+        } else {
+            // We have found the split point, i.e. the LCA node.
+            return root;
+        }
+    }
 }
