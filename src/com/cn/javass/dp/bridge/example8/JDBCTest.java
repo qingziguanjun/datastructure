@@ -6,8 +6,9 @@ import java.sql.DriverManager;
 public class JDBCTest {
 	public static void main(String[] args) throws Exception {
 		String sql = "具体要操作的sql语句";
+		String m_dbDriver    ="com.mysql.jdbc.Driver";
 		// 1：装载驱动
-		Class.forName("驱动的名字");
+		Class.forName("java.sql.DriverManager");
 		// 2：创建连接
 		Connection conn = DriverManager.getConnection("连接数据库服务的URL", "用户名",
 				"密码");

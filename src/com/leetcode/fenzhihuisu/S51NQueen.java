@@ -26,6 +26,7 @@ public class S51NQueen {
             return;
         }
         for (int i = 0; i < n; i++){
+            //ÁÐ      ¶Ô½ÇÏß
             if (col.contains(i) || diag1.contains(row + i) || diag2.contains(row - i)) continue;
 
             char[] charArray = new char[n];

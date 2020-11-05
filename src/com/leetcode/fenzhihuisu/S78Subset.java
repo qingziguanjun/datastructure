@@ -66,7 +66,7 @@ public class S78Subset {
     public static void main(String[] args) {
         S78Subset s78Subset = new S78Subset();
         int[] nums = {1, 2, 3};
-        List<List<Integer>> subsets = s78Subset.subsetsIter(nums);
+        List<List<Integer>> subsets = s78Subset.subsets(nums);
         System.out.println(subsets);
     }
 
