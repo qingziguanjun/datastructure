@@ -5,7 +5,7 @@ package com.leetcode.tree;
  * @date 2020-04-02 10:12
  * @Description:
  */
-public class S111 {
+public class S111MinDepth {
     public int minDepth(TreeNode root) {
         if(root == null){
             return 0;

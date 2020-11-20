@@ -1,4 +1,5 @@
-package com.leetcode.tree;
+package com.train1112.tree;
+
 
 
 import java.util.ArrayList;
@@ -10,13 +11,6 @@ import java.util.List;
  * @Description:
  */
 public class BSTreeUtil {
-    /**
-     *     1
-     *   2   3
-     * 7   4   5
-     8
-     * @return
-     */
     public static TreeNode createTree() {
         TreeNode node1 = new TreeNode(1);
         TreeNode node2 = new TreeNode(2);
