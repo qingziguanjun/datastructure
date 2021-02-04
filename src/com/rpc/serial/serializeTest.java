@@ -6,7 +6,7 @@ import java.io.*;
 public class serializeTest {
 
     public static void main(String[] args) throws Exception {
-        User user = new User();
+        User user = new User("","");
         user.setName("fufu");
         user.setAge("18");
         serialize(user);

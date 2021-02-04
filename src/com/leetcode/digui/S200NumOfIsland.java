@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @author songyi
  * @date 2020-08-19 20:14
- * @Description:
+ * @Description:https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/
  */
 public class S200NumOfIsland {
 
@@ -109,91 +109,62 @@ public class S200NumOfIsland {
                 {'0', '0', '0', '1', '1'}
         };
         S200NumOfIsland s  =   new S200NumOfIsland();
-        //int i = s.numIslands(nums1);
-        int i = s.numIslandsBCJ(nums1);
+        int j = s.numIslands(nums1);
+        System.out.println(j);
+        int[][] num3={
+                {0,0,1,0,0,0,0,1,0,0,0,0,0},
+                {0,0,0,0,0,0,0,1,1,1,0,0,0},
+                {0,1,1,0,1,0,0,0,0,0,0,0,0},
+                {0,1,0,0,1,1,0,0,1,0,1,0,0},
+                {0,1,0,0,1,1,0,0,1,1,1,0,0},
+                {0,0,0,0,0,0,0,0,0,0,1,0,0},
+                {0,0,0,0,0,0,0,1,1,1,0,0,0},
+                {0,0,0,0,0,0,0,1,1,0,0,0,0}}
+                ;
+        int i = s.maxAreaOfIsland(num3);
         System.out.println(i);
-        ConcurrentHashMap chr = new ConcurrentHashMap();
     }
 
 
-    class UnionFind {
-        int count;
-        int[] parent;
-        int[] rank;
 
-        public UnionFind(char[][] grid) {
-            count = 0;
-            int m = grid.length;
-            int n = grid[0].length;
-            parent = new int[m * n];
-            rank = new int[m * n];
-            for (int i = 0; i < m; ++i) {
-                for (int j = 0; j < n; ++j) {
-                    if (grid[i][j] == '1') {
-                        parent[i * n + j] = i * n + j;
-                        ++count;
-                    }
-                    rank[i * n + j] = 0;
+    //岛屿最大面积
+    public int maxAreaOfIsland(int[][] grid) {
+        int res = 0;
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[0].length; c++) {
+                if (grid[r][c] == 1) {
+                    int a = area(grid, r, c);
+                    res = Math.max(res, a);
                 }
             }
         }
-
-        public int find(int i) {
-            if (parent[i] != i) parent[i] = find(parent[i]);
-            return parent[i];
-        }
-
-        public void union(int x, int y) {
-            int rootx = find(x);
-            int rooty = find(y);
-            if (rootx != rooty) {
-                if (rank[rootx] > rank[rooty]) {
-                    parent[rooty] = rootx;
-                } else if (rank[rootx] < rank[rooty]) {
-                    parent[rootx] = rooty;
-                } else {
-                    parent[rooty] = rootx;
-                    rank[rootx] += 1;
-                }
-                --count;
-            }
-        }
-
-        public int getCount() {
-            return count;
-        }
+        return res;
     }
 
-    public int numIslandsBCJ(char[][] grid) {
-        if (grid == null || grid.length == 0) {
+    int area(int[][] grid, int r, int c) {
+        //终止条件
+        if (!inArea(grid, r, c)) {
             return 0;
         }
-
-        int nr = grid.length;
-        int nc = grid[0].length;
-        int num_islands = 0;
-        UnionFind uf = new UnionFind(grid);
-        for (int r = 0; r < nr; ++r) {
-            for (int c = 0; c < nc; ++c) {
-                if (grid[r][c] == '1') {
-                    grid[r][c] = '0';
-                    if (r - 1 >= 0 && grid[r-1][c] == '1') {
-                        uf.union(r * nc + c, (r-1) * nc + c);
-                    }
-                    if (r + 1 < nr && grid[r+1][c] == '1') {
-                        uf.union(r * nc + c, (r+1) * nc + c);
-                    }
-                    if (c - 1 >= 0 && grid[r][c-1] == '1') {
-                        uf.union(r * nc + c, r * nc + c - 1);
-                    }
-                    if (c + 1 < nc && grid[r][c+1] == '1') {
-                        uf.union(r * nc + c, r * nc + c + 1);
-                    }
-                }
-            }
+        //不是岛
+        if (grid[r][c] != 1) {
+            return 0;
         }
+        //当前层的逻辑
+        grid[r][c] = 2;
 
-        return uf.getCount();
+        //上下左右递归处理
+        return 1
+                + area(grid, r - 1, c)
+                + area(grid, r + 1, c)
+                + area(grid, r, c - 1)
+                + area(grid, r, c + 1);
+    }
+
+    //是否在岛屿内，判断行列的边界
+    boolean inArea(int[][] grid, int r, int c) {
+        return 0 <= r && r < grid.length
+                && 0 <= c && c < grid[0].length;
     }
 
 }
